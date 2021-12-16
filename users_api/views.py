@@ -17,25 +17,23 @@ class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = UserAccount.objects.all().order_by('id')
   serializer_class = UserAccountSerializer
 
-## USER AUTH
+### THIS IS THE FUNCTION THAT PERFORMS AUTH
 def check_login(request):
-  # If a GET request is made, return an empty object
-  if request.method=='GET':
-    return JsonResponse({})
-
-  if request.method=='PUT':
-    # Make the request JSON
-    jsonRequest = json.loads(request.body)
-    email = jsonRequest['email']
-    password = jsonRequest['password']
-
-    # See if email exists in DB
-    if UserAccount.objects.get(email=email):
-      user = UserAccount.objects.get(email=email)
-
-      if check_password(password, user.password):
-        return JsonResponse({'id': user.id, 'email': user.email})
-      else:
+        #IF A GET REQUEST IS MADE, RETURN AN EMPTY {}
+    if request.method=='GET':
         return JsonResponse({})
-    else:
-      return JsonResponse({})
+
+        #CHECK IF A PUT REQUEST IS BEING MADE
+    if request.method=='PUT':
+
+        jsonRequest = json.loads(request.body) #make the request JSON format
+        email = jsonRequest['email'] #get the email from the request
+        password = jsonRequest['password'] #get the password from the request
+        if UserAccount.objects.get(email=email): #see if email exists in db
+            user = UserAccount.objects.get(email=email)  #find user object with matching email
+            if check_password(password, user.password): #check if passwords match
+                return JsonResponse({'id': user.id, 'email': user.email}) #if passwords match, return a user dict
+            else: #passwords don't match so return empty dict
+                return JsonResponse({})
+        else: #if email doesn't exist in db, return empty dict
+            return JsonResponse({})
