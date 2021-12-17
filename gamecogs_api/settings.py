@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gamecogs_api',
+
 ]
 
 MIDDLEWARE = [
@@ -59,6 +59,11 @@ MIDDLEWARE = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://gamecogs-api.herokuapp.com/',
+    'http://localhost:3000'
+]
 
 ROOT_URLCONF = 'gamecogs_api.urls'
 
