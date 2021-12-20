@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import UserAccount
 
+
+
 from django.contrib.auth.hashers import make_password, check_password
 
 class UserAccountSerializer(serializers.ModelSerializer):
@@ -19,5 +21,8 @@ class UserAccountSerializer(serializers.ModelSerializer):
     def update(self,instance, validated_data):
         user = UserAccount.objects.get(email=validated_data["email"])
         user.password = make_password(validated_data["password"])
+        user.collection = validated_data["collection"]
+        user.forsale = validated_data["forsale"]
+        user.wantlist = validated_data["wantlist"]
         user.save()
         return user
