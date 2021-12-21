@@ -1,3 +1,4 @@
+from django.db import models
 from rest_framework import serializers
 from .models import UserAccount
 
@@ -26,3 +27,18 @@ class UserAccountSerializer(serializers.ModelSerializer):
         user.wantlist = validated_data["wantlist"]
         user.save()
         return user
+    
+
+class UserListsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = ('id', 'email', 'collection', 'forsale', 'wantlist')
+
+    def patch(self, instance, validated_data, partial=True):
+        user = UserAccount.objects.get(email=validated_data["email"])
+        user.collection = validated_data["collection"]
+        user.forsale = validated_data["forsale"]
+        user.wantlist = validated_data["wantlist"]
+        user.save()
+        return user
+

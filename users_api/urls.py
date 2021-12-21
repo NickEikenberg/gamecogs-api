@@ -6,5 +6,7 @@ urlpatterns = [
   path('api/useraccount', views.UserAccountList.as_view(), name='useraccount_list'),
   path('api/useraccount/<int:pk>', views.UserAccountDetail.as_view(),
   name='useraccount_detail'),
+  path('api/useraccount/<int:pk>/games', views.UserGameLists.as_view(),
+  name='useraccount_detail'),
   path('api/useraccount/login', csrf_exempt(views.check_login), name="check_login")
 ]

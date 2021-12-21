@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .serializers import UserAccountSerializer
+from .serializers import UserListsSerializer
 from .models import UserAccount
 
 from django.contrib.auth.hashers import make_password, check_password
@@ -16,6 +17,12 @@ class UserAccountList(generics.ListCreateAPIView):
 class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = UserAccount.objects.all().order_by('id')
   serializer_class = UserAccountSerializer
+
+class UserGameLists(generics.RetrieveUpdateDestroyAPIView):
+  queryset = UserAccount.objects.all().order_by('id')
+  serializer_class = UserListsSerializer
+
+  
 
 ### THIS IS THE FUNCTION THAT PERFORMS AUTH
 def check_login(request):
