@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-l6x2)mza!@zf@rtv1duf*3p=91@goh02f-yu61lasc8ll=pmk8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'gamecogs-api.herokuapp.com/']
+ALLOWED_HOSTS = ['localhost', 'gamecogs-api.herokuapp.com']
 
 
 # Application definition
