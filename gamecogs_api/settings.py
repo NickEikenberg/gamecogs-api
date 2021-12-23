@@ -28,12 +28,15 @@ SECRET_KEY = 'django-insecure-l6x2)mza!@zf@rtv1duf*3p=91@goh02f-yu61lasc8ll=pmk8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'git.heroku.com/gamecogs-api.git']
+ALLOWED_HOSTS = ['localhost', 'gamecogs-api.herokuapp.com/']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
+    'gunicorn',
+    'dj_database_url',
     'bcrypt',
     'corsheaders',
     'rest_framework',
